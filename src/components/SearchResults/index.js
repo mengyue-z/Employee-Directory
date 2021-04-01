@@ -20,9 +20,9 @@ function SearchResults(props) {
     <th>Image</th>
     <th onClick={props.sortResults}>Name
     </th>
-    <th >Phone</th>
-    <th >Email</th>
-    <th >DOB</th>
+    <th onClick={props.sortResults}>Phone</th>
+    <th onClick={props.sortResults}>Email</th>
+    <th onClick={props.sortResults} >DOB</th>
   </tr>
   </thead>
   {props.results.map(renderRow)}

@@ -65,6 +65,31 @@ class Search extends Component {
     } 
     this.setState({filtered_results: filtered_results_copy, sortDirection: nextSortDirection})
   }
+
+  sortResults2(){
+    var nextSortDirection
+    var filtered_results_copy = [...this.state.filtered_results];
+    filtered_results_copy.sort(this.sortHelper.bind(this))
+    if (this.state.sortDirection == "ASC"){
+      nextSortDirection = "DSC"
+    } else if (this.state.sortDirection == "DSC"){
+      nextSortDirection = "ASC"
+    } 
+    this.setState({filtered_results: filtered_results_copy, sortDirection: nextSortDirection})
+  }
+  sortbyPhone(){
+    var nextSortDirection
+    var filtered_results_phone = [...this.state.filtered_results];
+    filtered_results_phone.sort(this.sortHelper.bind(this))
+    if (this.state.sortDirection == "ASC"){
+      nextSortDirection = "DSC"
+    } else if (this.state.sortDirection == "DSC"){
+      nextSortDirection = "ASC"
+    } 
+    this.setState({filtered_results: filtered_results_phone, sortDirection: nextSortDirection})
+  }
+
+
   render() {
     return (
       <div>
