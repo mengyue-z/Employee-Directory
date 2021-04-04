@@ -18,11 +18,11 @@ function SearchResults(props) {
         <thead>
   <tr>
     <th>Image</th>
-    <th onClick={props.sortResults}>Name
+    <th onClick={props. sortResultsbyName}>Name  {props.sortStatus =="ASC" ? "⬆" : "⬇" }
     </th>
-    <th onClick={props.sortResults}>Phone</th>
-    <th onClick={props.sortResults}>Email</th>
-    <th onClick={props.sortResults} >DOB</th>
+    <th onClick={props.sortResultsbyPhone}>Phone  {props.sortStatus =="ASC" ? "⬆" : "⬇" }</th>
+    <th onClick={props.sortResultsbyName}>Email  {props.sortStatus =="ASC" ? "⬆" : "⬇" }</th>
+    <th onClick={props.sortResultsbyDob} >DOB  {props.sortStatus =="ASC" ? "⬆" : "⬇" }</th>
   </tr>
   </thead>
   {props.results.map(renderRow)}

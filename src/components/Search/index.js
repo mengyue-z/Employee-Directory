@@ -34,7 +34,8 @@ class Search extends Component {
       this.setState({filtered_results: this.state.results})
     }
   };
-  sortHelper(a,b){
+
+  sortHelperName(a,b){
     if (this.state.sortDirection=="ASC"){
 
     if (a.name.first > b.name.first) {
@@ -54,10 +55,52 @@ class Search extends Component {
     }
   } 
 }
-  sortResults(){
+
+sortHelperPhone(a,b){
+  if (this.state.sortDirection=="ASC"){
+
+  if (a.phone > b.phone) {
+    return 1;
+  } else if (a.phone === b.phone){
+    return 0;
+  } else {
+    return -1;
+  }
+} else if (this.state.sortDirection=="DSC"){
+  if (a.phone > b.phone) {
+    return -1;
+  } else if (a.phone === b.phone){
+    return 0;
+  } else {
+    return 1;
+  }
+} 
+}
+
+sortHelperDob(a,b){
+  if (this.state.sortDirection=="ASC"){
+
+  if (a.dob.date > b.dob.date) {
+    return 1;
+  } else if (a.phone === b.phone){
+    return 0;
+  } else {
+    return -1;
+  }
+} else if (this.state.sortDirection=="DSC"){
+  if (a.dob.date > b.dob.date) {
+    return -1;
+  } else if (a.dob.date === b.dob.date){
+    return 0;
+  } else {
+    return 1;
+  }
+} 
+}
+  sortResultsbyName(){
     var nextSortDirection
     var filtered_results_copy = [...this.state.filtered_results];
-    filtered_results_copy.sort(this.sortHelper.bind(this))
+    filtered_results_copy.sort(this.sortHelperName.bind(this))
     if (this.state.sortDirection == "ASC"){
       nextSortDirection = "DSC"
     } else if (this.state.sortDirection == "DSC"){
@@ -66,27 +109,27 @@ class Search extends Component {
     this.setState({filtered_results: filtered_results_copy, sortDirection: nextSortDirection})
   }
 
-  sortResults2(){
+  sortResultsbyPhone(){
     var nextSortDirection
-    var filtered_results_copy = [...this.state.filtered_results];
-    filtered_results_copy.sort(this.sortHelper.bind(this))
+    var filtered_results_copy_2 = [...this.state.filtered_results];
+    filtered_results_copy_2.sort(this.sortHelperPhone.bind(this))
     if (this.state.sortDirection == "ASC"){
       nextSortDirection = "DSC"
     } else if (this.state.sortDirection == "DSC"){
       nextSortDirection = "ASC"
     } 
-    this.setState({filtered_results: filtered_results_copy, sortDirection: nextSortDirection})
+    this.setState({filtered_results: filtered_results_copy_2, sortDirection: nextSortDirection})
   }
-  sortbyPhone(){
+  sortResultsbyDob(){
     var nextSortDirection
-    var filtered_results_phone = [...this.state.filtered_results];
-    filtered_results_phone.sort(this.sortHelper.bind(this))
+    var filtered_results_dob = [...this.state.filtered_results];
+    filtered_results_dob.sort(this.sortHelperDob.bind(this))
     if (this.state.sortDirection == "ASC"){
       nextSortDirection = "DSC"
     } else if (this.state.sortDirection == "DSC"){
       nextSortDirection = "ASC"
     } 
-    this.setState({filtered_results: filtered_results_phone, sortDirection: nextSortDirection})
+    this.setState({filtered_results: filtered_results_dob, sortDirection: nextSortDirection})
   }
 
 
@@ -98,8 +141,12 @@ class Search extends Component {
             handleInputChange={this.handleInputChange}
           />
           <SearchResults 
-          sortResults = {this.sortResults.bind(this)}
-          results={this.state.filtered_results} />
+          sortResultsbyName = {this.sortResultsbyName.bind(this)}
+          sortResultsbyPhone = {this.sortResultsbyPhone.bind(this)}
+          sortResultsbyDob = {this.sortResultsbyDob.bind(this)}
+          results={this.state.filtered_results} 
+          sortStatus = {this.state.sortDirection}/>
+          
         </Container>
       </div>
     );
