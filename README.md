@@ -2,7 +2,7 @@
 
 ## Description
 
-* This is a employee directory application with React where users can view all the informations of the employees and are able to sort or filter the results.
+* This is an employee directory application with React where users can view all the information of the employees and are able to sort or filter the results.
 
 ## User Story
 ```
